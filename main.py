@@ -11,13 +11,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_text = update.message.text
-    download_video_from_inst_by_url(user_text)
-    file_name = "your_vid.mp4"
+    if "https://www.instagram.com/reel/" in user_text:
+        download_video_from_inst_by_url(user_text)
+        file_name = "your_vid.mp4"
     
-    if os.path.isfile(file_name):
-        await update.message.reply_document(document=open(file_name, "rb"))
-        os.remove(file_name)
-        print(f"{file_name} has been sent and deleted.")
+        if os.path.isfile(file_name):
+            await update.message.reply_document(document=open(file_name, "rb"))
+            os.remove(file_name)
+            print(f"{file_name} has been sent and deleted.")
+        else:
+            await update.message.reply_text("Невірне посилання🥺\nСпробуй знову😉")
     else:
         await update.message.reply_text("Невірне посилання🥺\nСпробуй знову😉")
 
