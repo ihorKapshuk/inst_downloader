@@ -11,7 +11,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_text = update.message.text
-    if "https://www.instagram.com/reel/" in user_text:
+    if "https://www.instagram.com/" in user_text:
         download_video_from_inst_by_url(user_text)
         file_name = "your_vid.mp4"
     
